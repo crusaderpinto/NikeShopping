@@ -1,10 +1,9 @@
-package crusader.nikeshopping;
+package crusader.nikeshopping.activities;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
@@ -25,6 +25,9 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 
+import crusader.nikeshopping.AppConstants;
+import crusader.nikeshopping.R;
+import crusader.nikeshopping.RetroApi;
 import crusader.nikeshopping.adapters.EndlessRecyclerViewAdapter;
 import crusader.nikeshopping.adapters.MyAdapter;
 import crusader.nikeshopping.models.RetriveByKeyWord;
@@ -34,7 +37,7 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class MainActivity extends AppCompatActivity implements Callback<RetriveByKeyWord>, EndlessRecyclerViewAdapter.RequestToLoadMoreListener, View.OnClickListener {
+public class MainActivity extends BaseActivity implements Callback<RetriveByKeyWord>, EndlessRecyclerViewAdapter.RequestToLoadMoreListener, View.OnClickListener {
     RecyclerView rv_prodPreview;
     private MyAdapter mAdapter;
     RetriveByKeyWord myDataset;
@@ -47,12 +50,14 @@ public class MainActivity extends AppCompatActivity implements Callback<RetriveB
 
     String searchTerm = "";
 
+    TextView tvEmptyView;
+
     private EndlessRecyclerViewAdapter endlessRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -70,7 +75,13 @@ public class MainActivity extends AppCompatActivity implements Callback<RetriveB
         makeApiCall(searchTerm);
     }
 
-    private void initComponents() {
+    @Override
+    public void initSetContentView() {
+        setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void initComponents() {
         rv_prodPreview = (RecyclerView) findViewById(R.id.rv_detail_list);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv_prodPreview.setLayoutManager(llm);
@@ -78,6 +89,11 @@ public class MainActivity extends AppCompatActivity implements Callback<RetriveB
         edtSearch = (EditText) findViewById(R.id.edt_search_term);
         btnSearch = (Button) findViewById(R.id.btn_search);
 
+        tvEmptyView = (TextView) findViewById(R.id.tv_empty_view);
+    }
+
+    @Override
+    public void initListeners() {
         btnSearch.setOnClickListener(this);
     }
 
@@ -151,6 +167,12 @@ public class MainActivity extends AppCompatActivity implements Callback<RetriveB
             endlessRecyclerViewAdapter = new EndlessRecyclerViewAdapter(this, mAdapter, this);
             rv_prodPreview.setAdapter(endlessRecyclerViewAdapter);
             /********************/
+
+            if (mAdapter.getItemCount() == 0) {
+                tvEmptyView.setVisibility(View.VISIBLE);
+            } else {
+                tvEmptyView.setVisibility(View.GONE);
+            }
         }
         totalPageCount = Integer.valueOf(myDataset.getFindItemsByKeywordsResponse().get(0).getPaginationOutput().get(0).getTotalPages().get(0));
         currentPageCount = Integer.valueOf(myDataset.getFindItemsByKeywordsResponse().get(0).getPaginationOutput().get(0).getPageNumber().get(0));

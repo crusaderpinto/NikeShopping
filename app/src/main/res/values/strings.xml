@@ -9,4 +9,8 @@
     <string name="txt_login">Login</string>
     <string name="txt_register">Register</string>
     <string name="txt_forgot_password">Forgot Password</string>
+    <string name="txt_already_a_member_login">Already a member? Login</string>
+    <string name="txt_create_account">Create Account</string>
+    <string name="txt_address">Address</string>
+    <string name="txt_no_items_to_display">No items to display</string>
 </resources>
