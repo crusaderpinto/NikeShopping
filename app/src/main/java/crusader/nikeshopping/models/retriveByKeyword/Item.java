@@ -1,4 +1,4 @@
-package crusader.nikeshopping.models;
+package crusader.nikeshopping.models.retriveByKeyword;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -17,9 +17,6 @@ private List<String> title = new ArrayList<String>();
 @SerializedName("globalId")
 @Expose
 private List<String> globalId = new ArrayList<String>();
-@SerializedName("subtitle")
-@Expose
-private List<String> subtitle = new ArrayList<String>();
 @SerializedName("primaryCategory")
 @Expose
 private List<PrimaryCategory> primaryCategory = new ArrayList<PrimaryCategory>();
@@ -35,9 +32,6 @@ private List<String> paymentMethod = new ArrayList<String>();
 @SerializedName("autoPay")
 @Expose
 private List<String> autoPay = new ArrayList<String>();
-@SerializedName("postalCode")
-@Expose
-private List<String> postalCode = new ArrayList<String>();
 @SerializedName("location")
 @Expose
 private List<String> location = new ArrayList<String>();
@@ -53,6 +47,12 @@ private List<SellingStatu> sellingStatus = new ArrayList<SellingStatu>();
 @SerializedName("listingInfo")
 @Expose
 private List<ListingInfo> listingInfo = new ArrayList<ListingInfo>();
+@SerializedName("returnsAccepted")
+@Expose
+private List<String> returnsAccepted = new ArrayList<String>();
+@SerializedName("galleryPlusPictureURL")
+@Expose
+private List<String> galleryPlusPictureURL = new ArrayList<String>();
 @SerializedName("condition")
 @Expose
 private List<Condition> condition = new ArrayList<Condition>();
@@ -62,6 +62,15 @@ private List<String> isMultiVariationListing = new ArrayList<String>();
 @SerializedName("topRatedListing")
 @Expose
 private List<String> topRatedListing = new ArrayList<String>();
+@SerializedName("subtitle")
+@Expose
+private List<String> subtitle = new ArrayList<String>();
+@SerializedName("secondaryCategory")
+@Expose
+private List<SecondaryCategory> secondaryCategory = new ArrayList<SecondaryCategory>();
+@SerializedName("postalCode")
+@Expose
+private List<String> postalCode = new ArrayList<String>();
 
 /**
 * 
@@ -115,24 +124,6 @@ return globalId;
 */
 public void setGlobalId(List<String> globalId) {
 this.globalId = globalId;
-}
-
-/**
-* 
-* @return
-* The subtitle
-*/
-public List<String> getSubtitle() {
-return subtitle;
-}
-
-/**
-* 
-* @param subtitle
-* The subtitle
-*/
-public void setSubtitle(List<String> subtitle) {
-this.subtitle = subtitle;
 }
 
 /**
@@ -228,24 +219,6 @@ this.autoPay = autoPay;
 /**
 * 
 * @return
-* The postalCode
-*/
-public List<String> getPostalCode() {
-return postalCode;
-}
-
-/**
-* 
-* @param postalCode
-* The postalCode
-*/
-public void setPostalCode(List<String> postalCode) {
-this.postalCode = postalCode;
-}
-
-/**
-* 
-* @return
 * The location
 */
 public List<String> getLocation() {
@@ -336,6 +309,42 @@ this.listingInfo = listingInfo;
 /**
 * 
 * @return
+* The returnsAccepted
+*/
+public List<String> getReturnsAccepted() {
+return returnsAccepted;
+}
+
+/**
+* 
+* @param returnsAccepted
+* The returnsAccepted
+*/
+public void setReturnsAccepted(List<String> returnsAccepted) {
+this.returnsAccepted = returnsAccepted;
+}
+
+/**
+* 
+* @return
+* The galleryPlusPictureURL
+*/
+public List<String> getGalleryPlusPictureURL() {
+return galleryPlusPictureURL;
+}
+
+/**
+* 
+* @param galleryPlusPictureURL
+* The galleryPlusPictureURL
+*/
+public void setGalleryPlusPictureURL(List<String> galleryPlusPictureURL) {
+this.galleryPlusPictureURL = galleryPlusPictureURL;
+}
+
+/**
+* 
+* @return
 * The condition
 */
 public List<Condition> getCondition() {
@@ -385,6 +394,60 @@ return topRatedListing;
 */
 public void setTopRatedListing(List<String> topRatedListing) {
 this.topRatedListing = topRatedListing;
+}
+
+/**
+* 
+* @return
+* The subtitle
+*/
+public List<String> getSubtitle() {
+return subtitle;
+}
+
+/**
+* 
+* @param subtitle
+* The subtitle
+*/
+public void setSubtitle(List<String> subtitle) {
+this.subtitle = subtitle;
+}
+
+/**
+* 
+* @return
+* The secondaryCategory
+*/
+public List<SecondaryCategory> getSecondaryCategory() {
+return secondaryCategory;
+}
+
+/**
+* 
+* @param secondaryCategory
+* The secondaryCategory
+*/
+public void setSecondaryCategory(List<SecondaryCategory> secondaryCategory) {
+this.secondaryCategory = secondaryCategory;
+}
+
+/**
+* 
+* @return
+* The postalCode
+*/
+public List<String> getPostalCode() {
+return postalCode;
+}
+
+/**
+* 
+* @param postalCode
+* The postalCode
+*/
+public void setPostalCode(List<String> postalCode) {
+this.postalCode = postalCode;
 }
 
 }

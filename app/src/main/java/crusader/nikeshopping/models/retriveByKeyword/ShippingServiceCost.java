@@ -1,9 +1,9 @@
-package crusader.nikeshopping.models;
+package crusader.nikeshopping.models.retriveByKeyword;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CurrentPrice {
+public class ShippingServiceCost {
 
 @SerializedName("@currencyId")
 @Expose

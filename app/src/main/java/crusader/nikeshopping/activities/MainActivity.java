@@ -30,7 +30,7 @@ import crusader.nikeshopping.R;
 import crusader.nikeshopping.RetroApi;
 import crusader.nikeshopping.adapters.EndlessRecyclerViewAdapter;
 import crusader.nikeshopping.adapters.MyAdapter;
-import crusader.nikeshopping.models.RetriveByKeyWord;
+import crusader.nikeshopping.models.retriveByKeyword.RetriveByKeyWord;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -242,4 +242,6 @@ public class MainActivity extends BaseActivity implements Callback<RetriveByKeyW
             }
         }.execute();
     }
+
+
 }

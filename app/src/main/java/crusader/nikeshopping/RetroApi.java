@@ -2,7 +2,8 @@ package crusader.nikeshopping;
 
 import java.util.HashMap;
 
-import crusader.nikeshopping.models.RetriveByKeyWord;
+import crusader.nikeshopping.models.retriveByKeyword.RetriveByKeyWord;
+import crusader.nikeshopping.models.retriveSingleItem.RetriveSingleItem;
 import retrofit.Call;
 import retrofit.http.GET;
 import retrofit.http.QueryMap;
@@ -15,4 +16,6 @@ public interface RetroApi {
     @GET(AppConstants.FIND_BY_KEYWORD_URL)
     Call<RetriveByKeyWord> getProducts(@QueryMap HashMap mapData);
 
+    @GET(AppConstants.FIND_SINGLE_ITEM_URL)
+    Call<RetriveSingleItem> getSingleItemDetails(@QueryMap HashMap mapData);
 }

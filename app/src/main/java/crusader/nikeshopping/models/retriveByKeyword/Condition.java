@@ -1,4 +1,4 @@
-package crusader.nikeshopping.models;
+package crusader.nikeshopping.models.retriveByKeyword;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
