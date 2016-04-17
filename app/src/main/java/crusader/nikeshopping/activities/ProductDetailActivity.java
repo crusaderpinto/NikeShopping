@@ -23,6 +23,8 @@ import java.util.HashMap;
 import crusader.nikeshopping.AppConstants;
 import crusader.nikeshopping.R;
 import crusader.nikeshopping.RetroApi;
+import crusader.nikeshopping.db.DBHelper;
+import crusader.nikeshopping.models.SaveItem;
 import crusader.nikeshopping.models.retriveSingleItem.RetriveSingleItem;
 import retrofit.Call;
 import retrofit.Callback;
@@ -43,10 +45,12 @@ public class ProductDetailActivity extends BaseActivity implements Callback<Retr
     TextView tvProductTitle;
     TextView tvDescription;
     TextView tvPrice;
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dbHelper=new DBHelper(this);
         setSupportActionBar(toolbar);
 
         Bundle bundle = getIntent().getExtras();
@@ -122,7 +126,9 @@ public class ProductDetailActivity extends BaseActivity implements Callback<Retr
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                SaveItem saveItem=new SaveItem("XYZ",mDataSet.getItem().getItemID(),1,mDataSet.getItem().getCurrentPrice().getValue(),mDataSet.getItem().getGalleryURL());
+                boolean bln=saveItem.insertInDb(dbHelper.getDb(),saveItem);
+                Snackbar.make(view, "Replace with your own action "+bln, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

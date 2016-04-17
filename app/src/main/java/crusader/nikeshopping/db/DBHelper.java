@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import crusader.nikeshopping.db.models.UserRegistration;
+import crusader.nikeshopping.models.SaveItem;
 
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -23,6 +24,8 @@ public class DBHelper extends SQLiteOpenHelper {
       //Create Registration Table
       UserRegistration userRegistration = new UserRegistration();
       userRegistration.createTable(db);
+      SaveItem saveItem=new SaveItem();
+      saveItem.createTable(db);
    }
 
    @Override
