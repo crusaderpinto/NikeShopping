@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import crusader.nikeshopping.db.models.SaveItem;
 import crusader.nikeshopping.db.models.UserRegistration;
-import crusader.nikeshopping.models.SaveItem;
 
 
 public class DBHelper extends SQLiteOpenHelper {

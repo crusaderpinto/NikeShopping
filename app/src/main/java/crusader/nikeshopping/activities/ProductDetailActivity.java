@@ -24,7 +24,7 @@ import crusader.nikeshopping.AppConstants;
 import crusader.nikeshopping.R;
 import crusader.nikeshopping.RetroApi;
 import crusader.nikeshopping.db.DBHelper;
-import crusader.nikeshopping.models.SaveItem;
+import crusader.nikeshopping.db.models.SaveItem;
 import crusader.nikeshopping.models.retriveSingleItem.RetriveSingleItem;
 import retrofit.Call;
 import retrofit.Callback;
