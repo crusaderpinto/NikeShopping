@@ -126,10 +126,12 @@ public class ProductDetailActivity extends BaseActivity implements Callback<Retr
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SaveItem saveItem=new SaveItem("XYZ",mDataSet.getItem().getItemID(),1,mDataSet.getItem().getCurrentPrice().getValue(),mDataSet.getItem().getGalleryURL());
+                SaveItem saveItem=new SaveItem(mDataSet.getItem().getTitle(),mDataSet.getItem().getItemID(),1,mDataSet.getItem().getCurrentPrice().getValue(),mDataSet.getItem().getGalleryURL());
                 boolean bln=saveItem.insertInDb(dbHelper.getDb(),saveItem);
-                Snackbar.make(view, "Replace with your own action "+bln, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if(bln) {
+                    Snackbar.make(view, "Added to shopping cart successfully", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }
         });
     }
