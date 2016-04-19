@@ -156,7 +156,7 @@ public class SaveItem extends BaseTable<SaveItem> {
         contentValues.put(SELECTED_ITEMS_COLUMN_PRICE, getPrice());
         contentValues.put(SELECTED_ITEMS_COLUMN_QTY, getQuntity());
         contentValues.put(SELECTED_ITEMS_COLUMN_USER_NAME, getUserName());
-        db.update(getTableName(), contentValues, SELECTED_ITEMS_COLUMN_USER_NAME + " = ? ", new String[]{tableModel.getUserName()});
+        db.update(getTableName(), contentValues, SELECTED_ITEMS_COLUMN_ITEM_ID + " = ? ", new String[] { tableModel.getItemId() } );
         return true;
     }
 
@@ -164,7 +164,7 @@ public class SaveItem extends BaseTable<SaveItem> {
     public Integer deleteData(SQLiteDatabase db, SaveItem tableModel) {
         return db.delete(getTableName(),
                 SELECTED_ITEMS_COLUMN_USER_NAME + " = ? ",
-                new String[]{tableModel.getUserName()});
+                new String[] { tableModel.getUserName() });
     }
 
     public String getImgUrl() {

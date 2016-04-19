@@ -18,11 +18,13 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import crusader.nikeshopping.AppConstants;
 import crusader.nikeshopping.R;
 import crusader.nikeshopping.RetroApi;
+import crusader.nikeshopping.db.ColumnValuePair;
 import crusader.nikeshopping.db.DBHelper;
 import crusader.nikeshopping.db.models.SaveItem;
 import crusader.nikeshopping.models.retriveSingleItem.RetriveSingleItem;
@@ -126,8 +128,18 @@ public class ProductDetailActivity extends BaseActivity implements Callback<Retr
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SaveItem saveItem=new SaveItem(mDataSet.getItem().getTitle(),mDataSet.getItem().getItemID(),1,mDataSet.getItem().getCurrentPrice().getValue(),mDataSet.getItem().getGalleryURL());
-                boolean bln=saveItem.insertInDb(dbHelper.getDb(),saveItem);
+                boolean bln;
+                SaveItem saveItem=new SaveItem();
+                ArrayList<SaveItem> saveItems = saveItem.getFilteredData(dbHelper.getDb(), new ColumnValuePair(SaveItem.SELECTED_ITEMS_COLUMN_ITEM_ID,mDataSet.getItem().getItemID()));
+                if(saveItems != null && saveItems.size() > 0){
+                    //Record exist hence update data
+                    saveItem = new SaveItem(mDataSet.getItem().getTitle(),mDataSet.getItem().getItemID(),(saveItems.get(0).getQuntity() + 1),mDataSet.getItem().getCurrentPrice().getValue(),mDataSet.getItem().getGalleryURL());
+                    bln=saveItem.updateData(dbHelper.getDb(),saveItem);
+                }else{
+                    //Record doesnot exist
+                    saveItem = new SaveItem(mDataSet.getItem().getTitle(),mDataSet.getItem().getItemID(),1,mDataSet.getItem().getCurrentPrice().getValue(),mDataSet.getItem().getGalleryURL());
+                    bln=saveItem.insertInDb(dbHelper.getDb(),saveItem);
+                }
                 if(bln) {
                     Snackbar.make(view, "Added to shopping cart successfully", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
